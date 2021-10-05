@@ -26,7 +26,7 @@ services:
         hostname: 'mongo1'
         container_name: 'mongo-lorexplorer1'
         image: 'mongo:latest'
-        restart: 'on-failure'
+        restart: unless-stopped
         command: ["-f", "/etc/mongod.conf", "--port", "30001", "--keyFile", "/auth/file.key", "--replSet", "${MONGO_REPLICA_SET_NAME}", "--bind_ip_all"]
         expose: 
             - 30001
@@ -56,7 +56,7 @@ services:
         container_name: 'mongo-lorexplorer2'
         image: 'mongo:latest'
         command: ["-f", "/etc/mongod.conf","--port", "30002", "--keyFile", "/auth/file.key", "--replSet", "${MONGO_REPLICA_SET_NAME}", "--bind_ip_all"]
-        restart: 'on-failure'
+        restart: unless-stopped
         expose: 
             - 30002
         ports: 
@@ -86,7 +86,7 @@ services:
         container_name: 'mongo-lorexplorer3'
         image: 'mongo:latest'
         command: ["-f", "/etc/mongod.conf", "--port", "30003", "--keyFile", "/auth/file.key", "--replSet", "${MONGO_REPLICA_SET_NAME}", "--bind_ip_all"]
-        restart: 'on-failure'
+        restart: unless-stopped
         expose: 
             - 30003
         ports: 

@@ -41,7 +41,7 @@ services:
             - ./.docker/mongodb/mongod.conf:/etc/mongod.conf
             - ./.docker/mongodb/file.key:/auth/file.key
         healthcheck:
-            test: echo 'rs.status().ok' | mongo admin --port 30001 -u $${MONGO_INITDB_ROOT_USERNAME} -p $${MONGO_INITDB_ROOT_PASSWORD} --quiet | grep 1
+            test: echo 'rs.status().ok' | mongosh admin --port 30001 -u $${MONGO_INITDB_ROOT_USERNAME} -p $${MONGO_INITDB_ROOT_PASSWORD} --quiet | grep 1
             interval: 30s
             start_period: 60s
         env_file:
@@ -71,7 +71,7 @@ services:
         env_file:
             - .env
         healthcheck:
-            test: echo 'db.runCommand({serverStatus:1}).ok' | mongo admin -u $${MONGO_INITDB_ROOT_USERNAME} -p $${MONGO_INITDB_ROOT_PASSWORD} --quiet | grep 1
+            test: echo 'db.runCommand({serverStatus:1}).ok' | mongosh admin --port 30002 -u $${MONGO_INITDB_ROOT_USERNAME} -p $${MONGO_INITDB_ROOT_PASSWORD} --quiet | grep 1
             interval: 30s
             start_period: 60s
         environment:
@@ -101,7 +101,7 @@ services:
         env_file:
             - .env
         healthcheck:
-            test: echo 'db.runCommand({serverStatus:1}).ok' | mongo admin -u $${MONGO_INITDB_ROOT_USERNAME} -p $${MONGO_INITDB_ROOT_PASSWORD} --quiet | grep 1
+            test: echo 'db.runCommand({serverStatus:1}).ok' | mongosh admin --port 30003 -u $${MONGO_INITDB_ROOT_USERNAME} -p $${MONGO_INITDB_ROOT_PASSWORD} --quiet | grep 1
             interval: 30s
             start_period: 60s
         environment:

@@ -6,6 +6,7 @@ Based on https://github.com/sntnupl/devcontainers-mongodb-replica-set-with-docke
 ```bash
 openssl rand -base64 700 > file.key
 chmod 400 file.key
+sudo chown 999:999 file.key
 ```
 
 ## Build
